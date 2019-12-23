@@ -77,8 +77,9 @@ at com.opensymphony.xwork.DefaultActionProxy.execute(DefaultActionProxy.java:116
 `org.springframework.orm.hibernate3.HibernateSystemException: Unknown entity:`
 解决结果：映射文件hbm.xml里
 `<class name="com.hzfc.soar.pgjg.common.po.TpeFyxx" table="TPE_FYXX_XYQ" schema="PGJG" entity-name="TpeFyxx">`
-entity-name 和实体类服务接口实现类里return (TpeFyxx) this.merge("TpeFyxx", tpeFyxx);的第一个参数一定要对应！！！
-*****************
+entity-name 和实体类服务接口实现类里return (TpeFyxx) this.merge("TpeFyxx", tpeFyxx);的第一个参数一定要对应！！！  
+******
+
 	
 ## 6.在保障资格申请执行到bzzgsqServiceImpl中的保存家庭信息到工作库的方法时，报错，无法保存
 ```	
@@ -212,7 +213,7 @@ java.lang.NullPointerException
 ```
 **原因**：service没有注入;  
 **解决方法**：需要在base包下的PgjgBaseServiceImpl 里注入对应的实体类service
-**************
+******
 	
 ## 7.修改后项目启动出错
 ```	
@@ -334,7 +335,7 @@ Caused by: org.springframework.beans.factory.BeanCreationException: Error creati
 	... 70 more
 ```
 **问题原因**：po的实体类对应的service和serviceImpl应该继承SoarBaseService和SoarBaseServiceImpl，继承错了，启动不了
-*****************
+******
 
 ## 8.页面输入完信息后点击保存，会生成受理号和存入工作库，但是页面无法显示数据
 **问题原因**：页面初始化方法viewSqxx()在action类里没有内容，直接返回SUCCESS；
@@ -342,7 +343,7 @@ Caused by: org.springframework.beans.factory.BeanCreationException: Error creati
 ************
 
 ## 9.项目启动非常慢的原因可能是在debug中加了断点
-***********
+******
 	
 	
 ## 10.你的主机中的软件中止了一个已建立的连接。
@@ -438,10 +439,17 @@ org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying b
 3. IDEA的tomcat启动配置中加入-Dfile.encoding；打开tomcat/conf/logging.properties，找到java.util.logging.ConsoleHandler.encoding = UTF-8，修改为java.util.logging.ConsoleHandler.encoding = UTF-8。
 ******************
 
-## 12.高层次人才房购房申请页面错误
+## 15.高层次人才房购房补贴资格申请页面错误
 **详细状况**：在流程页面vue中，各组件无法通过平台配置，在vue中，去除组件的 v-if:"data.showList['']"属性后，可以显示，顶部信息为空白.  
 **问题原因**：使用的账号是超级管理员账号，没有配置权限。  
 **解决方法**：使用有受理权限的zhs账号，从‘我的工作台’-->‘业务受理’入口进入流程，就会正常显示
-***************************************
+*******
 
-	
+## 16.高层次人才房购房补贴资格申请流程启动	
+### 步骤
+1. 前端vue编写：保存和启动逻辑为在processInfo.vue中submitForm方法跳转到申请.vue中的validateForm验证，验证后  
+转到turnAll方法，再转到子组件processTemplate.vue中进行保存，跳转到后台启动流程。  
+2. 在平台上进行服务注册，注册路径为启动类接口：xxxxProcesshandler,编码与在“业务流程定义”中已绑定的业务类别保持一致。  
+3. 进行后台编码编写。  
+******
+## 17.
