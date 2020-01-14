@@ -452,4 +452,7 @@ org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying b
 2. 在平台上进行服务注册，注册路径为启动类接口：xxxxProcesshandler,编码与在“业务流程定义”中已绑定的业务类别保持一致。  
 3. 进行后台编码编写。  
 ******
-## 17.
+## 17.高层次人才房购房补贴发放申请保存问题   
+**症状**：页面保存后进入后台，前端页面数据丢失。
+**原因**：前端保存后会刷新页面，执行init方法中的获取页面数据的方法（页面回显方法），方法中获取数据的后台返回null。
+**解决**：后台回显方法修改
