@@ -455,4 +455,46 @@ org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying b
 ## 17.高层次人才房购房补贴发放申请保存问题   
 **症状**：页面保存后进入后台，前端页面数据丢失。
 **原因**：前端保存后会刷新页面，执行init方法中的获取页面数据的方法（页面回显方法），方法中获取数据的后台返回null。
-**解决**：后台回显方法修改
+**解决**：后台回显方法修改  
+******
+## 18.List的序列排序问题：  
+**目的**：将list中的元素排序  
+**代码**：  
+```
+ Collections.sort(bpmsHisOpinions, new Comparator<BpmsHisOpinion>() {
+            @Override
+            public int compare(BpmsHisOpinion o1, BpmsHisOpinion o2) {
+                return o1.getSortNum().compareTo(o2.getSortNum());
+            }
+        });
+```
+******
+## 19.maven 编译报错：
+1. `Cannot resolve org.openjfx:javafx.base:11.0.0-SNAPSHOT`  更新idea后maven importing jdk改为11，需要改回来
+2. `Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.7.0:compile`
+******
+## 20.项目启动报错：
+```
+java.lang.UnsatisfiedLinkError: D:\java\jdk1.8\bin\tcnative-1.dll: Can't load AMD 64-bit .dll on a IA 32-bit platform
+	at java.lang.ClassLoader$NativeLibrary.load(Native Method)
+	at java.lang.ClassLoader.loadLibrary0(ClassLoader.java:1941)
+	at java.lang.ClassLoader.loadLibrary(ClassLoader.java:1857)
+	at java.lang.Runtime.loadLibrary0(Runtime.java:870)
+	at java.lang.System.loadLibrary(System.java:1122)
+	at org.apache.tomcat.jni.Library.<init>(Library.java:42)
+	at org.apache.tomcat.jni.Library.initialize(Library.java:178)
+	at org.apache.catalina.core.AprLifecycleListener.init(AprLifecycleListener.java:198)
+	at org.apache.catalina.core.AprLifecycleListener.isAprAvailable(AprLifecycleListener.java:107)
+	at org.apache.catalina.connector.Connector.setProtocol(Connector.java:582)
+	at org.apache.catalina.connector.Connector.<init>(Connector.java:74)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:164)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:179)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:152)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:544)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:762)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:398)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:330)
+```
+**原因**：原因是jdk和tomcat冲突了，tomcat是64位的，而jdk是32位的，所以报错了。
+**解决**：控制台输入 java -version 查看jdk是64位还是32位，修改jdk和tomcat为同一版本。
